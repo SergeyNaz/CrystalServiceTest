@@ -9,14 +9,14 @@ import ru.crystals.test.ui.Names;
 import java.security.KeyException;
 import java.util.ArrayList;
 
-public class GmailInboxMailPage extends GmailInboxPage {
+public class GmailInboxLetterPage extends GmailInboxPage {
 
-    public GmailInboxMailPage() throws KeyException {
+    public GmailInboxLetterPage() throws KeyException {
         super(Names.GMAIL_INBOX_MAIL, "https://mail.google.com/(.+)/#inbox/(.+)");
         super.registerElements(new ArrayList<Element>() {{
-            add(new EmailLabel(Names.EMAIL_SENDER, By.xpath("//div[@id=':6m']//span[@class='go']")));
-            add(new Label(Names.EMAIL_SUBJECT, By.id(":5x")));
-            add(new Label(Names.EMAIL_CONTENT, By.id(":6n")));
+            add(new EmailLabel(Names.EMAIL_SENDER, By.xpath("//span[@class='go']")));
+            add(new Label(Names.EMAIL_SUBJECT, By.xpath("//h2[@class='hP']")));
+            add(new Label(Names.EMAIL_CONTENT, By.xpath("//div[@class='a3s aXjCH m15993edfcc3d5e75']")));
         }});
     }
 }

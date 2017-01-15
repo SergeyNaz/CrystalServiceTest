@@ -1,7 +1,8 @@
 package ru.crystals.test.ui.elements;
 
+import org.openqa.selenium.TimeoutException;
 import ru.crystals.test.Runner;
-import ru.crystals.test.Settings;
+import ru.crystals.test.Consts;
 import ru.crystals.test.ui.pages.Page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -9,9 +10,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-/**
- * Created by sergey on 1/12/17.
- */
 public class Element {
     private String name;
     private String eType;
@@ -67,7 +65,12 @@ public class Element {
     }
 
     public void waitUntilVisible() {
-        WebDriverWait wait = new WebDriverWait(Runner.driver, Settings.MAX_ELEMENT_WAIT);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        WebDriverWait wait = new WebDriverWait(Runner.driver, Consts.MAX_ELEMENT_WAIT);
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        } catch (TimeoutException ex) {
+            // dfdf
+        }
+
     }
 }

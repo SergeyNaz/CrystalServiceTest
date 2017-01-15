@@ -1,8 +1,5 @@
 package ru.crystals.test.ui;
 
-/**
- * Created by sergey on 1/12/17.
- */
 public class ElementTypes {
     public static final String FIELD = "field";
     public static final String BUTTON = "button";

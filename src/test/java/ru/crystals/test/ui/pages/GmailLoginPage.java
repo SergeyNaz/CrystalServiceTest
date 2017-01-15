@@ -9,13 +9,10 @@ import ru.crystals.test.ui.elements.Field;
 import java.security.KeyException;
 import java.util.ArrayList;
 
-/**
- * Created by sergey on 1/12/17.
- */
 public class GmailLoginPage extends Page {
     public GmailLoginPage() throws KeyException {
-        super(Names.GMAIL_LOGIN, "https://(.+)?google.com/(.+)?");
-        super.registerElements(new ArrayList<Element>(){{
+        super(Names.GMAIL_LOGIN, "https://accounts.google.com/(.+)");
+        super.registerElements(new ArrayList<Element>() {{
             add(new Field(Names.EMAIL_ADDRESS, By.id("Email")));
             add(new Button(Names.NEXT, By.id("next")));
             add(new Field(Names.PASSWORD, By.id("Passwd")));

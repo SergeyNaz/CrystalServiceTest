@@ -7,9 +7,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
-/**
- * Created by sergey on 1/12/17.
- */
 public class List extends Element {
     private ListItemLocatorTemplate itemLocatorTemplate;
 

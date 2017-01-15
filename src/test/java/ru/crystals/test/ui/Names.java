@@ -1,8 +1,5 @@
 package ru.crystals.test.ui;
 
-/**
- * Created by sergey on 1/12/17.
- */
 public class Names {
     public static final String EMAIL_ADDRESS = "Email";
     public static final String PASSWORD = "Password";

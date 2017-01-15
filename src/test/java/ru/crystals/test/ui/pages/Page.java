@@ -1,6 +1,7 @@
 package ru.crystals.test.ui.pages;
 
 import ru.crystals.test.Runner;
+import ru.crystals.test.Consts;
 import ru.crystals.test.ui.ElementTypes;
 import ru.crystals.test.ui.elements.Element;
 import org.openqa.selenium.NoSuchElementException;
@@ -9,12 +10,10 @@ import javax.management.openmbean.KeyAlreadyExistsException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by sergey on 1/12/17.
- */
 public class Page {
     private String urlRegexp;
     private String name;
@@ -78,5 +77,13 @@ public class Page {
         return matcher.find();
     }
 
-
+    public void waitUntilVisible() throws InterruptedException {
+        long timeoutExpiredMs = System.currentTimeMillis() + Consts.MAX_ELEMENT_WAIT * 1000;
+        while (!isVisible()) {
+            TimeUnit.SECONDS.sleep(Consts.INTERVAL_WAIT);
+            if (System.currentTimeMillis() >= timeoutExpiredMs) {
+                throw new AssertionError(String.format("Page with url %s is not opened", urlRegexp));
+            }
+        }
+    }
 }

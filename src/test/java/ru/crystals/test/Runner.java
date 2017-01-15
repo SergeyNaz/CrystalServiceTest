@@ -8,7 +8,7 @@ import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.crystals.test.ui.pages.GmailInboxListPage;
-import ru.crystals.test.ui.pages.GmailInboxMailPage;
+import ru.crystals.test.ui.pages.GmailInboxLetterPage;
 import ru.crystals.test.ui.pages.GmailLoginPage;
 import ru.crystals.test.ui.pages.Page;
 
@@ -20,8 +20,8 @@ import java.util.HashMap;
 @CucumberOptions(features = "src/test/resources/features/",
         monochrome = true,
         tags = {},
-        format = {"pretty", "html: cucumber-html-reports",
-                "json:cucumber-html-reports/cucumber.json"},
+        format = {"pretty", "html: html-report",
+                "json:html-reports/cucumber.json"},
         glue = "ru.crystals.test.steps")
 @RunWith(Cucumber.class)
 public class Runner {
@@ -31,8 +31,9 @@ public class Runner {
 
     @BeforeClass
     public static void setUp() throws KeyException {
-        System.setProperty("webdriver.gecko.driver", Settings.GECKODRIVER_PATH);
+        System.setProperty("webdriver.gecko.driver", Consts.GECKODRIVER_PATH);
         driver = new FirefoxDriver();
+        driver.manage().window().maximize();
         setUpPages();
     }
 
@@ -43,11 +44,11 @@ public class Runner {
 
     private static void setUpPages() throws KeyException {
         pages = new HashMap<String, Page>();
-        for (Page page: new ArrayList<Page>(){{
+        for (Page page : new ArrayList<Page>() {{
             add(new GmailLoginPage());
             add(new GmailInboxListPage());
-            add(new GmailInboxMailPage());
-        }}){
+            add(new GmailInboxLetterPage());
+        }}) {
             pages.put(page.getFullName(), page);
         }
     }
